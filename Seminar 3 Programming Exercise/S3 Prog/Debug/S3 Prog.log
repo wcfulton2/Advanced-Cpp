@@ -1,5 +1,6 @@
-﻿  Main.cpp
-e:\advanced c++\s3 prog\s3 prog\main.cpp(30): warning C4129: '.': unrecognized character escape sequence
-e:\advanced c++\s3 prog\s3 prog\main.cpp(51): warning C4715: 'getDouble': not all control paths return a value
-  S3 Prog.vcxproj -> E:\Advanced C++\S3 Prog\Debug\S3 Prog.exe
-  S3 Prog.vcxproj -> E:\Advanced C++\S3 Prog\Debug\S3 Prog.pdb (Full PDB)
+﻿  store.cpp
+  Main.cpp
+c:\users\bill\documents\advanced c++\seminar 3 programming exercise\s3 prog\main.cpp(51): warning C4129: '.': unrecognized character escape sequence
+  Generating Code...
+c:\users\bill\documents\advanced c++\seminar 3 programming exercise\s3 prog\main.cpp(70): warning C4715: 'getDouble': not all control paths return a value
+  S3 Prog.vcxproj -> C:\Users\Bill\Documents\Advanced C++\Seminar 3 Programming Exercise\Debug\S3 Prog.exe
