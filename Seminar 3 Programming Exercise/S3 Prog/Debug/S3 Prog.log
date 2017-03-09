@@ -1,6 +1,7 @@
-﻿  store.cpp
-  Main.cpp
-c:\users\bill\documents\advanced c++\seminar 3 programming exercise\s3 prog\main.cpp(51): warning C4129: '.': unrecognized character escape sequence
+﻿  Main.cpp
+c:\users\bill\documents\advanced c++\seminar 3 programming exercise\s3 prog\main.cpp(50): warning C4129: '.': unrecognized character escape sequence
   Generating Code...
-c:\users\bill\documents\advanced c++\seminar 3 programming exercise\s3 prog\main.cpp(70): warning C4715: 'getDouble': not all control paths return a value
+c:\users\bill\documents\advanced c++\seminar 3 programming exercise\s3 prog\main.cpp(68): warning C4715: 'getDouble': not all control paths return a value
+  Skipping... (no relevant changes detected)
+  store.cpp
   S3 Prog.vcxproj -> C:\Users\Bill\Documents\Advanced C++\Seminar 3 Programming Exercise\Debug\S3 Prog.exe
