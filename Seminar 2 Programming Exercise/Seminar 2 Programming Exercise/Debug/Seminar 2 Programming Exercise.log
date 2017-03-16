@@ -1,0 +1,10 @@
+﻿  romanType.cpp
+e:\advanced c++\seminar 2 programming exercise\seminar 2 programming exercise\romantype.cpp(33): warning C4018: '<': signed/unsigned mismatch
+e:\advanced c++\seminar 2 programming exercise\seminar 2 programming exercise\romantype.cpp(45): warning C4018: '<=': signed/unsigned mismatch
+  romanApp.cpp
+  Roman Numerals.cpp
+  Generating Code...
+e:\advanced c++\seminar 2 programming exercise\seminar 2 programming exercise\romanapp.cpp(116): warning C4715: 'romanApp::getInput': not all control paths return a value
+e:\advanced c++\seminar 2 programming exercise\seminar 2 programming exercise\romantype.cpp(86): warning C4715: 'romanType::getVal': not all control paths return a value
+  Seminar 2 Programming Exercise.vcxproj -> E:\Advanced C++\Seminar 2 Programming Exercise\Debug\Seminar 2 Programming Exercise.exe
+  Seminar 2 Programming Exercise.vcxproj -> E:\Advanced C++\Seminar 2 Programming Exercise\Debug\Seminar 2 Programming Exercise.pdb (Partial PDB)
