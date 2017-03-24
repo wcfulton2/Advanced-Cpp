@@ -23,19 +23,20 @@ public:
 
 	void createFileReport();
 	void printScreenReport();
+	void printScreenReportByGain();
 
 
 	void createHeader(ostream&);
 	void createFooter(ostream&);
 
-//	void printFileReport();
+
 
 	double calculateTotalAssetsValue();
 
 	double getTotalAssetsValue();
 	void setTotalAssetsValue(double);
 
-	void sortGainLoss();
+	int* sortGainLoss();
 
 
 	void setFileName(string);

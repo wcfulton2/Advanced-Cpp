@@ -47,6 +47,14 @@ istream& operator>>(istream& in, stockType& obj)
 	return in;
 }
 
+//bool operator>(const stockType& obj1, stockType& obj2)
+//{
+//	if (obj1.getPercentGainLoss > obj2.getPercentGainLoss)
+//		return true;
+//	else
+//		return false;
+//}
+
 
 /***************************************************
 				constructors

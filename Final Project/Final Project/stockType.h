@@ -10,6 +10,8 @@ class stockType
 
 	friend ostream& operator<<(ostream&, stockType&);
 	friend istream& operator>>(istream&, stockType&);
+	//friend bool operator>(const stockType&, stockType&);
+	
 
 public:
 

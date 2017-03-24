@@ -20,6 +20,7 @@ void stockListType::populateList()
 			i++;
 		}
 	}
+	file.close();
 }
 
 //int stockListType::getLength()
@@ -35,7 +36,8 @@ void stockListType::addToList(stockType obj)
 void stockListType::clearList()
 {
 	//listType<stockType> t;
-	t = new listType <stockType>;
+	//t = listType<stockType>();
+	t.clear();
 }
 
 //void stockListType::output()
@@ -81,6 +83,26 @@ void stockListType::printScreenReport()
 	for (int i = 0; i < t.getLength(); i++)
 	{
 		temp = t.getAt(i);
+
+		cout << temp;
+	}//end for
+
+	createFooter(cout);
+}
+
+void stockListType::printScreenReportByGain()
+{
+	stockType temp;
+	
+	int* sortIndicesGainLoss = new int[t.getLength()];
+
+	sortIndicesGainLoss = sortGainLoss();
+
+	createHeader(cout);
+
+	for (int i = 0; i < t.getLength(); i++)
+	{
+		temp = t.getAt(sortIndicesGainLoss[i]);
 
 		cout << temp;
 	}//end for
@@ -160,37 +182,34 @@ string stockListType::getFileName()
 	return this->fileName;
 }
 
-//void stockListType::sortGainLoss()
-//{
-//	int length = t.getLength();
-//	double min = 0;
-//	double max;
-//
-//	int sortIndicesGainLoss[10] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-//
-//	for (int i = 0; i < 10; i++)
-//	{
-//		for (int j = 0; j < 10 - i - 1; j++)
-//		{
-//			if (t.getAt(j).getPercentGainLoss() < t.getAt(j+1).getPercentGainLoss())
-//			{
-//				//int temp = sortIndicesGainLoss[j];
-//				//sortIndicesGainLoss[j] = sortIndicesGainLoss[j + 1];
-//				//sortIndicesGainLoss[j + 1] = temp;
-//
-//				sortIndicesGainLoss[j] = j + 1;
-//
-//			}
-//			else
-//			{
-//				sortIndicesGainLoss[j] = j;
-//			}
-//		}
-//	}
-//	
-//
-//	for (int i = 0; i < 10; i++)
-//	{
-//		cout << sortIndicesGainLoss[i] << endl;
-//	}
-//}
+int* stockListType::sortGainLoss()
+{
+	double min = 0;
+	double max;
+
+	int* sortIndicesGainLoss = new int[t.getLength()];
+
+	for (int i = 0; i < t.getLength(); i++)
+		sortIndicesGainLoss[i] = i;
+
+
+	for (int i = 0; i < t.getLength(); i++)
+	{
+		for (int j = 0; j < t.getLength() - 1; j++)
+		{
+			if (t.getAt(sortIndicesGainLoss[j]).getPercentGainLoss() < t.getAt(sortIndicesGainLoss[j + 1]).getPercentGainLoss())
+			{
+				int temp = sortIndicesGainLoss[j];
+				sortIndicesGainLoss[j] = sortIndicesGainLoss[j + 1];
+				sortIndicesGainLoss[j + 1] = temp;
+			}
+		}
+	}
+
+	return sortIndicesGainLoss;
+
+	//for (int i = 0; i < t.getLength(); i++)
+	//{
+	//	cout << sortIndicesGainLoss[i] << ": " << t.getAt(sortIndicesGainLoss[i]).getPercentGainLoss() << endl;		
+	//}
+}

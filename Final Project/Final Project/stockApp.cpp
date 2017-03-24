@@ -25,7 +25,8 @@ void stockApp::menu()
 
 		cout << "1: Print a stock report to file" << endl;
 		cout << "2: Print a stock report to screen" << endl;
-		cout << "3. Change the input file name" << endl << endl;
+		cout << "3. Print stock report to screen sorted by percentage gain" << endl;
+		cout << "4. Change the input file name" << endl << endl;
 
 		selection = getSelection("Please make a selection");
 		
@@ -39,7 +40,10 @@ void stockApp::menu()
 		case 2:				
 			lst.printScreenReport();
 			break;
-		case 3:		
+		case 3:
+			lst.printScreenReportByGain();
+			break;
+		case 4:		
 			lst.clearList();
 			lst.setFileName(changeFileName());
 			lst.populateList();

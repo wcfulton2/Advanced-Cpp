@@ -154,5 +154,12 @@ elemType& listType<elemType>::getAt(int position)
 	return list[position];
 }
 
+template <class elemType>
+void listType<elemType>::clear() {
+	length = 0;
+	delete[] list;
+	list = new elemType[maxSize];
+}
+
 
 #endif
