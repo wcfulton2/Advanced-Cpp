@@ -3,50 +3,39 @@
 
 #include "stockType.h"
 #include "listType.h"
-#include "reportWriter.h"
 #include <iostream>
 #include <fstream>
 
 using namespace std;
 
-
 class stockListType : public listType<stockType>
 {
 public:
 
-	//int getLength();
-
 	stockListType();
+	
 	void populateList();
-	void addToList(stockType);
-	void clearList();
+	void clearList();	
+	
+	string getFileName();
+	double getTotalAssetsValue();
+
+	void setFileName(string);
 
 	void createFileReport();
 	void printScreenReport();
 	void printScreenReportByGain();
 
+private:
+	listType<stockType> t;
+	double totalAssetsValue;
+	string fileName = "stocks.txt";
 
+	void addToList(stockType);
 	void createHeader(ostream&);
 	void createFooter(ostream&);
-
-
-
-	double calculateTotalAssetsValue();
-
-	double getTotalAssetsValue();
-	void setTotalAssetsValue(double);
-
 	int* sortGainLoss();
 
-
-	void setFileName(string);
-	string getFileName();
-
-private:
-	double totalAssetsValue;
-	string fileName = "StockInput.txt";
-
-
-	listType<stockType> t;
+	int countLines();	
 };
 #endif // !STOCK_LIST_TYPE_H

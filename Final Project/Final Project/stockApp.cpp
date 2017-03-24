@@ -4,9 +4,7 @@ stockApp::stockApp() { }
 
 void stockApp::execute()
 {
-	//lst.populateList();
 	menu();
-
 }
 
 void stockApp::menu()
@@ -26,7 +24,8 @@ void stockApp::menu()
 		cout << "1: Print a stock report to file" << endl;
 		cout << "2: Print a stock report to screen" << endl;
 		cout << "3. Print stock report to screen sorted by percentage gain" << endl;
-		cout << "4. Change the input file name" << endl << endl;
+		cout << "4. Change the input file name" << endl;
+		cout << "5. Exit" << endl << endl;
 
 		selection = getSelection("Please make a selection");
 		
@@ -47,14 +46,17 @@ void stockApp::menu()
 			lst.clearList();
 			lst.setFileName(changeFileName());
 			lst.populateList();
-			break;			
+			break;		
+		case 5:
+			exit(0);
+			break;
 		default:
 			cout << "An Error has occured, the program will now exit" << endl;
 			exit(0);
 		}
 
 		cout << endl;
-		cout << "Would you like to run the program again? y/n" << endl;
+		cout << "Would you like to retun to the menu? y/n" << endl;
 		cin >> goAgain;
 
 	} while (tolower(goAgain) == 'y');
@@ -67,7 +69,7 @@ int stockApp::getSelection(string prompt)
 {
 	bool valid = false;
 	string input;
-	regex pattern ("^[+]?[1-4]$");
+	regex pattern ("^[+]?[1-5]$");
 	
 	do
 	{
@@ -87,18 +89,34 @@ int stockApp::getSelection(string prompt)
 
 string stockApp::changeFileName()
 {
-	string defaultFileName = "StockInput.txt";
+	string defaultFileName = "stocks.txt";
 	string currentFileName = lst.getFileName();
+	regex pattern("^[a-z]+\.txt$");
 
-	cout << "The current file being read is " << currentFileName << ". If you would like to keep using this file, press enter to continue." << endl;
-	cout << "If you would like to change this file, enter the name of the new file, including the file extension, and press enter." << endl;
-	cout << "If you would like to reset the file name to the default file name of " << defaultFileName << "type default and press enter." << endl;
+	cout << "The current file being read is " << currentFileName << ". If you would like to keep using this file, type exit to continue." << endl;
+	cout << "If you would like to change this file, enter the name of the new file, including the file extension (must be .txt), and press enter." << endl;
+	cout << "If you would like to reset the file name to the default file name of " << defaultFileName << ", type default and press enter." << endl << endl;
+	cout << "Make a selection: ";
 	cin >> currentFileName;
+	cout << endl;
 
-	if (currentFileName == "")
+	transform(currentFileName.begin(), currentFileName.end(), currentFileName.begin(), ::tolower);
+
+	if (currentFileName == "exit")
+	{
+		cout << "File name was not changed." << endl;
 		return lst.getFileName();
+	}
 	else if (currentFileName == "default")
+	{
+		cout << "File name was set to default." << endl;
 		return defaultFileName;
-	else
+	}
+	else if (regex_match(currentFileName, pattern))
+	{
+		cout << "The file name was changed to " << currentFileName << endl;
 		return currentFileName;
+	}
+	else
+		cout << "This is not a valid file path. Please only enter files ending in .txt." << endl << "File ame unchanged, returning to the menu" << endl;
 }

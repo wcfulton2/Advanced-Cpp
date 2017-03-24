@@ -2,6 +2,8 @@
 #define STOCK_TYPE_H
 
 #include <string>
+#include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -9,14 +11,11 @@ class stockType
 {
 
 	friend ostream& operator<<(ostream&, stockType&);
-	friend istream& operator>>(istream&, stockType&);
-	//friend bool operator>(const stockType&, stockType&);
-	
+	friend istream& operator>>(istream&, stockType&);	
 
 public:
 
 	stockType();
-	stockType(string, double, int, double, double, double, double, double);
 
 	string getSymbol();
 	double getTotalValue();

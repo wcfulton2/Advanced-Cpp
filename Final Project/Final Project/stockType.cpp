@@ -1,6 +1,4 @@
 #include "stockType.h"
-#include <iostream>
-#include <iomanip>
 
 /**************************************************
 			Stream Operator Overloads
@@ -47,23 +45,11 @@ istream& operator>>(istream& in, stockType& obj)
 	return in;
 }
 
-//bool operator>(const stockType& obj1, stockType& obj2)
-//{
-//	if (obj1.getPercentGainLoss > obj2.getPercentGainLoss)
-//		return true;
-//	else
-//		return false;
-//}
-
 
 /***************************************************
 				constructors
 ****************************************************/
 stockType::stockType() { }
-
-stockType::stockType(string symbol, double totalValue, int numOfShares, double openingPrice, double closingPrice, double highPrice, double lowPrice, double previousPrice) :
-	symbol(symbol), totalValue(totalValue), numOfShares(numOfShares), openingPrice(openingPrice), closingPrice(closingPrice), highPrice(highPrice), lowPrice(lowPrice), previousPrice(previousPrice) { }
-
 
 
 /**************************************************

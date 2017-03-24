@@ -7,13 +7,14 @@ void stockListType::populateList()
 	ifstream file;
 	file.open(fileName);
 
-	stockType temp;
-
+	int lines = countLines();
 	int i = 0;
 
+	stockType temp;	
+
 	if (file.good() && file.is_open())
-	{
-		while (!file.eof())
+	{	
+		while (!file.eof() && i < lines)
 		{
 			file >> temp;
 			addToList(temp);
@@ -21,12 +22,35 @@ void stockListType::populateList()
 		}
 	}
 	file.close();
+
+	t.sort();
 }
 
-//int stockListType::getLength()
-//{
-//	return t.getLength();
-//}
+int stockListType::countLines()
+{
+	int lines = 0;
+	string s = "";
+
+	ifstream file;
+	file.open(fileName);
+
+	if (file.good() && file.is_open())
+	{
+
+		while (!file.eof())
+		{
+			getline(file, s);
+
+			if (!s.empty())
+			{
+				lines++;
+				s = "";
+			}
+		}
+	}
+
+	return lines;
+}
 
 void stockListType::addToList(stockType obj)
 {
@@ -35,16 +59,33 @@ void stockListType::addToList(stockType obj)
 
 void stockListType::clearList()
 {
-	//listType<stockType> t;
-	//t = listType<stockType>();
 	t.clear();
 }
 
-//void stockListType::output()
-//{
-//	createFileReport();
-//	displayStockData();
-//}
+string stockListType::getFileName()
+{
+	return this->fileName;
+}
+
+double stockListType::getTotalAssetsValue()
+{
+	stockType temp;
+	double totalAssetsValue = 0;
+
+	for (int i = 0; i < t.getLength(); i++)
+	{
+		temp = t.getAt(i);
+
+		totalAssetsValue += (temp.getNumOfShares() * temp.getClosingPrice());
+	}
+
+	return totalAssetsValue;
+}
+
+void stockListType::setFileName(string fileName)
+{
+	this->fileName = fileName;
+}
 
 void stockListType::createFileReport()
 {	
@@ -61,6 +102,8 @@ void stockListType::createFileReport()
 		file << temp;
 	}//end for
 
+	file << "Closing Assets: $" << getTotalAssetsValue() << endl;
+
 	createFooter(file);
 
 
@@ -68,10 +111,6 @@ void stockListType::createFileReport()
 	file.close();
 
 	cout << "File created sucessfully" << endl;
-
-	//reportWriter r;
-	//r.createFileReport(t);
-
 }
 
 void stockListType::printScreenReport()
@@ -86,6 +125,8 @@ void stockListType::printScreenReport()
 
 		cout << temp;
 	}//end for
+
+	cout << "Closing Assets: $" << getTotalAssetsValue() << endl;
 
 	createFooter(cout);
 }
@@ -105,7 +146,9 @@ void stockListType::printScreenReportByGain()
 		temp = t.getAt(sortIndicesGainLoss[i]);
 
 		cout << temp;
-	}//end for
+	}//end for	
+
+	cout << "Closing Assets: $" << getTotalAssetsValue() << endl;
 
 	createFooter(cout);
 }
@@ -118,68 +161,10 @@ void stockListType::createHeader(ostream & file)
 	file << "Symbol   Open    Close    High     Low    Close     Gain        Volume" << endl;
 	file << "------   -----   -----    -----    -----  --------  -------      ------" << endl;
 }
+
 void stockListType::createFooter(ostream & file)
 {
 	file << "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*";
-}
-//
-//void stockListType::printStockReport()
-//{
-//	reportWriter r;
-//
-//	r.printStockReport(t);
-//}
-
-//void stockListType::displayStockData()
-//{
-//	stockType temp;
-//
-//	createHeader(cout);
-//
-//	for (int i = 0; i < t.getLength(); i++)
-//	{
-//		temp = t.getAt(i);
-//
-//		cout << temp;
-//	}
-//
-//	createFooter(cout);
-//	cout << endl;
-//}
-
-double stockListType::calculateTotalAssetsValue()
-{
-	stockType temp;	
-	double totalAssetsValue = 0;
-
-	for (int i = 0; i < t.getLength(); i++)
-	{
-		temp = t.getAt(i);
-
-		totalAssetsValue += (temp.getNumOfShares() * temp.getClosingPrice());
-	}
-	
-	return totalAssetsValue;
-}
-
-double stockListType::getTotalAssetsValue()
-{
-	return this->totalAssetsValue;
-}
-
-void stockListType::setTotalAssetsValue(double totalAssetsValue)
-{
-	this->totalAssetsValue = totalAssetsValue;
-}
-
-void stockListType::setFileName(string fileName)
-{
-	this->fileName = fileName;
-}
-
-string stockListType::getFileName()
-{
-	return this->fileName;
 }
 
 int* stockListType::sortGainLoss()
@@ -207,9 +192,4 @@ int* stockListType::sortGainLoss()
 	}
 
 	return sortIndicesGainLoss;
-
-	//for (int i = 0; i < t.getLength(); i++)
-	//{
-	//	cout << sortIndicesGainLoss[i] << ": " << t.getAt(sortIndicesGainLoss[i]).getPercentGainLoss() << endl;		
-	//}
 }

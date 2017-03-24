@@ -1,4 +1,7 @@
-﻿  stockListType.cpp
-e:\advanced c++\final project\final project\stocklisttype.cpp(188): warning C4101: 'max': unreferenced local variable
+﻿  Main.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  stockListType.cpp
+  stockApp.cpp
   Final Project.vcxproj -> E:\Advanced C++\Final Project\Debug\Final Project.exe
   Final Project.vcxproj -> E:\Advanced C++\Final Project\Debug\Final Project.pdb (Partial PDB)
