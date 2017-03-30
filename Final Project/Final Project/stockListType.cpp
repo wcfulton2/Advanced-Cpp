@@ -40,6 +40,7 @@ int stockListType::countLines()
 		while (!file.eof())
 		{
 			getline(file, s);
+			s.erase(remove_if(s.begin(), s.end(), isspace), s.end()); //eliminate all spaces from the read lines
 
 			if (!s.empty())
 			{
@@ -90,7 +91,7 @@ void stockListType::setFileName(string fileName)
 void stockListType::createFileReport()
 {	
 	ofstream file;
-	file.open("output.txt");
+	file.open("Stock Report - By Symbol.txt");
 	stockType temp;
 
 	createHeader(file);
@@ -110,7 +111,7 @@ void stockListType::createFileReport()
 	file.flush();
 	file.close();
 
-	cout << "File created sucessfully" << endl;
+	cout << "Files created sucessfully" << endl;
 }
 
 void stockListType::printScreenReport()
@@ -130,6 +131,34 @@ void stockListType::printScreenReport()
 
 	createFooter(cout);
 }
+
+void stockListType::createFileReportByGainLoss() //create a report file from the stock data sorted by gain/loss. By Bill Fulton
+{
+	ofstream file;
+	file.open("Stock Report - By Gain.txt");
+	stockType temp;
+
+	int* sortIndicesGainLoss = new int[t.getLength()];
+
+	sortIndicesGainLoss = sortGainLoss(); //create a list of indices for the stock data sorted by percentage gain
+
+	createHeader(file); //create the file header
+
+	for (int i = 0; i < t.getLength(); i++) //iterate over the stock data objects sorted by their gain
+	{
+		temp = t.getAt(sortIndicesGainLoss[i]);
+
+		file << temp; //output to file using the overloaded stream insertion operator
+	}//end for
+
+	file << "Closing Assets: $" << getTotalAssetsValue() << endl; //add the value of all stock assets to the report
+
+	createFooter(file); //create the file footer
+
+
+	file.flush(); //flush the file stream
+	file.close(); //close the file
+} //end createFileReportByGainLoss
 
 void stockListType::printScreenReportByGain()
 {

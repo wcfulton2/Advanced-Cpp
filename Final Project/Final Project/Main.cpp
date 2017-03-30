@@ -1,5 +1,4 @@
 #include "stockApp.h"
-#include "reportWriter.h"
 #include "stockListType.h"
 #include "listType.h"
 

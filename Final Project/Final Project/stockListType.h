@@ -5,6 +5,7 @@
 #include "listType.h"
 #include <iostream>
 #include <fstream>
+#include <algorithm> 
 
 using namespace std;
 
@@ -23,6 +24,7 @@ public:
 	void setFileName(string);
 
 	void createFileReport();
+	void createFileReportByGainLoss();
 	void printScreenReport();
 	void printScreenReportByGain();
 

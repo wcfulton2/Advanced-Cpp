@@ -21,6 +21,7 @@ private:
 	void menu();
 	int getSelection(string);
 	string changeFileName();
+	bool fileExists(const string&);
 };
 
 #endif // !STOCK_APP_H
